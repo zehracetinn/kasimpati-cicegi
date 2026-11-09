@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#160d1f">
+  <meta name="description" content="Işıklar arasında yavaşça açan, sana özel dijital bir kasımpatı. Bir çiçek, bin güzel his.">
+  <title>Senin İçin Bir Kasımpatı ✦</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <canvas id="sparkles" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="background-orb background-orb--one" aria-hidden="true"></div>
+  <div class="background-orb background-orb--two" aria-hidden="true"></div>
+
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="wordmark" href="./" aria-label="Kasımpatı ana sayfa">
+        <span class="wordmark-symbol" aria-hidden="true">✳</span>
+        <span><strong>kasımpatı</strong><small>KÜÇÜK BİR DİJİTAL BAHÇE</small></span>
+      </a>
+      <div class="header-note"><span class="status-light"></span> BİR ÇİÇEK AÇIYOR</div>
+    </header>
+
+    <main class="hero">
+      <section class="hero-copy" aria-labelledby="main-title">
+        <div class="eyebrow"><span class="eyebrow-line"></span> BAZEN BİR ÇİÇEK YETER</div>
+        <h1 id="main-title">Bir kasımpatı,<br><em>bin güzel his.</em></h1>
+        <p class="hero-description" id="greeting">Bazı güzellikler anlatılmaz, sadece hissettirilir. Bu küçük çiçek de tam olarak bunun için açıyor.</p>
+        <div class="hero-actions">
+          <button class="button button-primary" type="button" id="replay-btn"><span class="button-shine"></span><span aria-hidden="true">✦</span> Yeniden çiçek açsın</button>
+          <button class="button button-secondary" type="button" id="share-btn"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V3m0 0L8 7m4-4 4 4M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> Birine gönder</button>
+        </div>
+        <div class="palette-section" aria-label="Çiçeğin rengini seç">
+          <span class="palette-title">BİR RENK SEÇ</span>
+          <div class="palette-options" role="group" aria-label="Kasımpatı renkleri">
+            <button class="swatch swatch--gold is-selected" type="button" data-palette="gold" aria-label="Altın sarısı" aria-pressed="true" title="Altın sarısı"></button>
+            <button class="swatch swatch--rose" type="button" data-palette="rose" aria-label="Pembe" aria-pressed="false" title="Pembe"></button>
+            <button class="swatch swatch--lilac" type="button" data-palette="lilac" aria-label="Leylak" aria-pressed="false" title="Leylak"></button>
+            <span class="palette-name" id="palette-name">Altın sarısı</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="artwork" aria-label="Animasyonlu açan kasımpatı">
+        <div class="artwork-backdrop" aria-hidden="true"><span class="orbit orbit--one"></span><span class="orbit orbit--two"></span><span class="orbit orbit--three"></span><span class="constellation constellation--one">✦</span><span class="constellation constellation--two">✧</span><span class="constellation constellation--three">✳</span></div>
+        <svg id="chrysanthemum" class="flower-svg" viewBox="0 0 600 650" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Yaprakları sırayla açan, altın renkli kasımpatı çiçeği">
+          <defs>
+            <linearGradient id="stem-gradient" x1="0" x2="1" y1="0" y2="0"><stop offset="0%" stop-color="#294b38"/><stop offset="45%" stop-color="#689b62"/><stop offset="100%" stop-color="#244532"/></linearGradient>
+            <linearGradient id="leaf-gradient" x1="0" x2="1" y1="1" y2="0"><stop offset="0%" stop-color="#193e35"/><stop offset="55%" stop-color="#4a8056"/><stop offset="100%" stop-color="#8fae68"/></linearGradient>
+            <radialGradient id="flower-core"><stop offset="0%" stop-color="#fffbd3"/><stop offset="45%" stop-color="#ffd66f"/><stop offset="100%" stop-color="#aa5e31"/></radialGradient>
+            <radialGradient id="flower-halo"><stop offset="0%" stop-color="#eeb263" stop-opacity=".27"/><stop offset="65%" stop-color="#eeb263" stop-opacity=".07"/><stop offset="100%" stop-color="#eeb263" stop-opacity="0"/></radialGradient>
+            <filter id="soft-glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="9"/></filter>
+            <g id="tiny-star"><path d="M0 -6 Q1.4 -1.5 6 0 Q1.4 1.5 0 6 Q-1.4 1.5 -6 0 Q-1.4 -1.5 0 -6Z" fill="#ffe7a9"/></g>
+          </defs>
+          <ellipse cx="300" cy="288" rx="232" ry="232" fill="url(#flower-halo)" class="halo-shape"/>
+          <g id="plant-root">
+            <path id="stem-path" d="M300 284 C309 370 292 453 303 607" fill="none" stroke="url(#stem-gradient)" stroke-width="10" stroke-linecap="round"/>
+            <g class="leaf leaf--left">
+              <path d="M303 477 C266 433 228 411 181 424 C202 465 249 496 303 487Z" fill="url(#leaf-gradient)"/>
+              <path d="M303 485 Q246 450 190 428 M261 454 l-1 -21 M238 446 l-22 5 M273 467 l-15 15" fill="none" stroke="#b6ce80" stroke-opacity=".44" stroke-width="1.6" stroke-linecap="round"/>
+            </g>
+            <g class="leaf leaf--right">
+              <path d="M303 537 C337 488 379 468 428 480 C407 521 365 550 302 547Z" fill="url(#leaf-gradient)"/>
+              <path d="M304 545 Q369 503 419 485 M347 516 l-2 -25 M373 504 l21 5 M335 526 l15 18" fill="none" stroke="#b6ce80" stroke-opacity=".44" stroke-width="1.6" stroke-linecap="round"/>
+            </g>
+            <g id="flower-head" transform="translate(300 275)">
+              <circle r="170" fill="#fac473" opacity=".13" filter="url(#soft-glow)"/>
+              <g id="petal-container"></g>
+              <g id="flower-center" class="flower-center">
+                <circle r="21" fill="#7f4b2c" opacity=".76"/>
+                <circle r="17" fill="url(#flower-core)"/>
+                <g id="core-dots"></g>
+              </g>
+            </g>
+          </g>
+          <g class="flower-glints">
+            <use href="#tiny-star" x="91" y="207" class="glint glint--one"/>
+            <use href="#tiny-star" x="496" y="124" class="glint glint--two"/>
+            <use href="#tiny-star" x="476" y="446" class="glint glint--three"/>
+          </g>
+        </svg>
+        <div class="artwork-caption"><span class="caption-rule"></span><span>CHRYSANTHEMUM</span><span class="caption-dot">✦</span><span>SONBAHARIN EN GÜZEL HALİ</span></div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>Sevgiyle büyüyen küçük şeylere...</span><span>✦ <span id="year"></span> · SADECE SENİN İÇİN</span></footer>
+  </div>
+
+  <dialog id="share-dialog" class="share-dialog" aria-labelledby="dialog-title">
+    <form method="dialog" id="share-form">
+      <button type="button" class="dialog-close" id="close-dialog" aria-label="Kapat">×</button>
+      <div class="dialog-symbol" aria-hidden="true">✳</div>
+      <h2 id="dialog-title">Bu çiçek <em>kime açılsın?</em></h2>
+      <p>İsim ve küçük bir not ekle. Oluşturduğun bağlantıyı açan kişi, kendisine özel kasımpatıyı görecek.</p>
+      <label for="recipient-input">KİMİN İÇİN?</label>
+      <input id="recipient-input" name="isim" type="text" maxlength="40" placeholder="Örn. Zeynep" autocomplete="off">
+      <label for="message-input">KÜÇÜK BİR NOT (İSTEĞE BAĞLI)</label>
+      <textarea id="message-input" name="mesaj" rows="3" maxlength="220" placeholder="Senin için küçük bir sürpriz..."></textarea>
+      <button class="button button-primary dialog-submit" id="copy-link" type="button"><span aria-hidden="true">✦</span> Bağlantıyı kopyala</button>
+      <p class="copy-feedback" id="copy-feedback" role="status" aria-live="polite"></p>
+    </form>
+  </dialog>
+</body>
+</html>
